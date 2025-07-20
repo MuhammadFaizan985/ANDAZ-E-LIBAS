@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AndazLibas - Premium clothing for men">
+  <title>AndazLibas - Men's Fashion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e8b4b7;
+      --primary-hover: #d9a2a5;
+      --secondary: #f1e9ea;
+      --text-primary: #191011;
+      --text-secondary: #8b5b5d;
+      --bg: #fbf9f9;
+      --border: #e0e0e0;
+      --white: #ffffff;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header Styles */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(251, 249, 249, 0.9);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid var(--secondary);
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      fill: var(--primary);
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--primary);
+      outline: none;
+    }
+
+    .cart-button {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      background-color: var(--secondary);
+      border: none;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+      cursor: pointer;
+    }
+
+    .cart-button:hover,
+    .cart-button:focus {
+      background-color: var(--primary);
+      color: var(--white);
+      outline: none;
+    }
+
+    .cart-icon {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Main Content */
+    main {
+      padding: 2rem 0;
+    }
+
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .page-title {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .product-count {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Product Card */
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      background: var(--white);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image-wrapper {
+      position: relative;
+      aspect-ratio: 3/4;
+      background: var(--secondary);
+      overflow: hidden;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform var(--transition);
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-content {
+      padding: 1rem;
+    }
+
+    .add-to-cart {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--primary);
+      color: var(--white);
+      font-weight: 700;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: transform 0.2s, background var(--transition);
+    }
+
+    .add-to-cart:hover,
+    .add-to-cart:focus {
+      background: var(--primary-hover);
+      transform: scale(1.02);
+      outline: none;
+    }
+
+    .product-info {
+      margin-top: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .product-title {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .product-price {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--secondary);
+      padding: 2rem 0;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus {
+      color: var(--primary);
+      outline: none;
+    }
+
+    .footer-text {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .nav-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .nav-left {
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 0;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .products-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-bar">
+      <div class="nav-left">
+        <a href="index.html" class="logo">
+          <svg class="logo-icon" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" />
+          </svg>
+          <h1 class="logo-text">AndazLibas</h1>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="cart.html">Cart</a>
+        </nav>
+      </div>
+      <a href="cart.html" class="cart-button" aria-label="Shopping cart">
+        <svg class="cart-icon" viewBox="0 0 256 256" aria-hidden="true">
+          <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Z" />
+        </svg>
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="products-header">
+      <h1 class="page-title">All Products</h1>
+      <span class="product-count">Showing 10 products</span>
+    </div>
+
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/31WwA7VUnZL._SL500_._AC_SL500_.jpg" alt="Classic white shirt" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="1" data-name="Classic White Shirt" data-price="25.00" data-image="./assets/31WwA7VUnZL._SL500_._AC_SL500_.jpg" data-size="M">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Classic White Shirt</h3>
+            <p class="product-price">$25</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 2 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/57065962_TC_B.avif" alt="Slim fit jeans" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="2" data-name="Slim Fit Jeans" data-price="60.00" data-image="./assets/57065962_TC_B.avif" data-size="32">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Slim Fit Jeans</h3>
+            <p class="product-price">$60</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 3 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/download.jpg" alt="Elegant necktie" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="3" data-name="Elegant Necktie" data-price="12.00" data-image="./assets/download.jpg">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Elegant Necktie</h3>
+            <p class="product-price">$12</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 4 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/images.jpg" alt="Wool coat" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="4" data-name="Wool Coat" data-price="77.00" data-image="./assets/images.jpg" data-size="L">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Wool Coat</h3>
+            <p class="product-price">$77</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 5 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/download (4).jpg" alt="Leather shoes" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="5" data-name="Leather Shoes" data-price="52.00" data-image="./assets/download (4).jpg" data-size="9">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Leather Shoes</h3>
+            <p class="product-price">$52</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 6 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/slope-jkt-jr-blue-configurable-pictureorg-pict02715_01.webp" alt="Blue jacket" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="6" data-name="Blue Jacket" data-price="99.00" data-image="./assets/slope-jkt-jr-blue-configurable-pictureorg-pict02715_01.webp" data-size="M">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Blue Jacket</h3>
+            <p class="product-price">$99</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 7 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/download (2).jpg" alt="Long coat" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="7" data-name="Long Coat" data-price="67.00" data-image="./assets/download (2).jpg" data-size="XL">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Long Coat</h3>
+            <p class="product-price">$67</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 8 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/download (1).jpg" alt="Knit sweater" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="8" data-name="Knit Sweater" data-price="43.00" data-image="./assets/download (1).jpg" data-size="M">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Knit Sweater</h3>
+            <p class="product-price">$43</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 9 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/man-without-head-isolated-on-260nw-201544736.webp" alt="Three-piece suit" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="9" data-name="Three-Piece Suit" data-price="250.00" data-image="./assets/man-without-head-isolated-on-260nw-201544736.webp" data-size="L">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Three-Piece Suit</h3>
+            <p class="product-price">$250</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 10 -->
+      <article class="product-card">
+        <div class="product-image-wrapper">
+          <img class="product-image" src="./assets/download (3).jpg" alt="Arabian style scarf" loading="lazy">
+        </div>
+        <div class="product-content">
+          <button class="add-to-cart" data-id="10" data-name="Arabian Style Scarf" data-price="15.00" data-image="./assets/download (3).jpg">
+            Add to Cart
+          </button>
+          <div class="product-info">
+            <h3 class="product-title">Arabian Style Scarf</h3>
+            <p class="product-price">$15</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+      <p class="footer-text">© 2025 AndazLibas. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize cart from localStorage or create empty array
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Update cart count on page load
+      updateCartCount();
+      
+      // Add to cart functionality
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+          const product = {
+            id: this.getAttribute('data-id'),
+            name: this.getAttribute('data-name'),
+            price: parseFloat(this.getAttribute('data-price')),
+            image: this.getAttribute('data-image'),
+            size: this.getAttribute('data-size') || 'One Size',
+            quantity: 1
+          };
+          
+          // Check if product already exists in cart
+          const existingItem = cart.find(item => item.id === product.id);
+          
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push(product);
+          }
+          
+          // Save to localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Update UI
+          updateCartCount();
+          
+          // Visual feedback
+          this.textContent = 'Added!';
+          setTimeout(() => {
+            this.textContent = 'Add to Cart';
+          }, 1000);
+        });
+      });
+      
+      // Update cart count function
+      function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector('.cart-count').textContent = totalItems;
+      }
+    });
+  </script>
+</body>
+</html>
